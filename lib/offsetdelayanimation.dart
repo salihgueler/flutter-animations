@@ -20,30 +20,6 @@ class OffsetDelayAnimationWidgetState extends State<OffsetDelayAnimationWidget>
     _controller =
         AnimationController(vsync: this, duration: Duration(seconds: 2));
 
-    void handler(status) {
-      if (status == AnimationStatus.completed) {
-        _animation.removeStatusListener(handler);
-        _controller.reset();
-        _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-          parent: _controller,
-          curve: Curves.fastOutSlowIn,
-        ));
-        _lateAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-            parent: _controller,
-            curve: Interval(
-              0.2,
-              1.0,
-              curve: Curves.fastOutSlowIn,
-            )))
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              Navigator.pop(context);
-            }
-          });
-        _controller.forward();
-      }
-    }
-
     _animation = Tween(begin: -1.0, end: 0.0).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.fastOutSlowIn,
@@ -57,6 +33,30 @@ class OffsetDelayAnimationWidgetState extends State<OffsetDelayAnimationWidget>
           1.0,
           curve: Curves.fastOutSlowIn,
         )));
+  }
+
+  void handler(status) {
+    if (status == AnimationStatus.completed) {
+      _animation.removeStatusListener(handler);
+      _controller.reset();
+      _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+        parent: _controller,
+        curve: Curves.fastOutSlowIn,
+      ));
+      _lateAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+          parent: _controller,
+          curve: Interval(
+            0.2,
+            1.0,
+            curve: Curves.fastOutSlowIn,
+          )))
+        ..addStatusListener((status) {
+          if (status == AnimationStatus.completed) {
+            Navigator.pop(context);
+          }
+        });
+      _controller.forward();
+    }
   }
 
   @override

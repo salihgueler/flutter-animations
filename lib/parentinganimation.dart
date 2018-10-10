@@ -16,8 +16,8 @@ class ParentingAnimationWidgetState extends State<ParentingAnimationWidget>
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-        duration: const Duration(seconds: 2), vsync: this);
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     growingAnimation = Tween(begin: 10.0, end: 100.0)
         .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
     animation = Tween(begin: -0.25, end: 0.0).animate(CurvedAnimation(
@@ -51,17 +51,11 @@ class ParentingAnimationWidgetState extends State<ParentingAnimationWidget>
                     Transform(
                         transform: Matrix4.translationValues(
                             animation.value * width, 0.0, 0.0),
-                        child: Center(
-                            child: AnimatedBuilder(
-                          animation: growingAnimation,
-                          builder: (BuildContext context, Widget child) {
-                            return new Center(
-                                child: Container(
-                              height: growingAnimation.value,
-                              width: growingAnimation.value * 2,
-                              color: Colors.black12,
-                            ));
-                          },
+                        child: new Center(
+                            child: Container(
+                          height: growingAnimation.value,
+                          width: growingAnimation.value * 2,
+                          color: Colors.black12,
                         ))),
                     Transform(
                         transform: Matrix4.translationValues(

@@ -3,6 +3,7 @@ import 'package:flutter_animations/easinganimationwidget.dart';
 import 'package:flutter_animations/maskinganimationwidget.dart';
 import 'package:flutter_animations/offsetdelayanimation.dart';
 import 'package:flutter_animations/parentinganimation.dart';
+import 'package:flutter_animations/springfreefallinganimation.dart';
 import 'package:flutter_animations/transformationanimationwidget.dart';
 import 'package:flutter_animations/valuechangeanimation.dart';
 
@@ -94,6 +95,13 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => new MaskingAnimationWidget()));
+              },
+            ),
+            ListTile(
+              title: Text("Physics animation"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => new SpringFreeFallingAnimation()));
               },
             )
           ],
